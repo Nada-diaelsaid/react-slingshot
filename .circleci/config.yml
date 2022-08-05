@@ -9,14 +9,14 @@ jobs:
     steps:
       - checkout
       - save_cache:
-        key: "npm_packages"
-        paths:
-          - /src/node_modules
+          key: "npm_packages"
+          paths:
+            - /src/node_modules
       - run:
-        name: "npm_build"
-        command: |
-          npm run lint
-          npm run build
+          name: "npm_build"
+          command: |
+            npm run lint
+            npm run build
 
   test:
     <<: *defaults
@@ -26,10 +26,10 @@ jobs:
           keys:
             - "npm_packages"
       - run:
-        name: "npm_test"
-        command: |
-          npm run i
-          npm run test
+          name: "npm_test"
+          command: |
+            npm run i
+            npm run test
 
   analyze:
     <<: *defaults
@@ -45,8 +45,8 @@ workflows:
     jobs:
       - build
       - test:
-        requires:
-          - build
+          requires:
+            - build
       - analyze:
-          requires;
+          requires:
             - test
