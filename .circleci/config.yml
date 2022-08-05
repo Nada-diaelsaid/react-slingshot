@@ -1,22 +1,22 @@
 version: 2.1
 defaults: &defaults
-  docker: 
+  docker:
     - image: circleci/node:13.8.0
 
 jobs:
   build:
     <<: *defaults
-    - steps:
-      - checkout
-      - save_cache:
-        key: "npm_packages"
-        paths:
-          - /src/node_modules
-      - run:
-        name: "npm_build"
-        command: |
-          npm run lint
-          npm run build
+      - steps:
+        - checkout
+        - save_cache:
+          key: "npm_packages"
+          paths:
+            - /src/node_modules
+        - run:
+          name: "npm_build"
+          command: |
+            npm run lint
+            npm run build
 
   test:
     <<: *defaults
